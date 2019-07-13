@@ -14,8 +14,10 @@
   margin-right: auto;
   width: 80%;
   margin-top: 40px;
+  margin-bottom: 100px;
   padding: 12px;
-  /* border: 1px solid red; */
+  position: relative;
+  /* overflow-x: scroll; */
 }
 
 .app-title {
@@ -36,3 +38,10 @@
   font-style: oblique;
   display: inline-block;
 }
+
+.table {
+  position: relative;
+  overflow-x: scroll;
+  color: #f8f8f8;
+  font-size: 15px;
+};
