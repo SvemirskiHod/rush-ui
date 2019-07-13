@@ -1,4 +1,5 @@
 .App {
+  font-family: 'Roboto', sans-serif;
   text-align: center;
   background-color: #000000;
   min-height: 100vh;
@@ -13,11 +14,11 @@
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-  margin-top: 40px;
+  margin-top: 30px;
   margin-bottom: 100px;
   padding: 12px;
   position: relative;
-  /* overflow-x: scroll; */
+  overflow-x: scroll;
 }
 
 .app-title {
@@ -44,4 +45,22 @@
   overflow-x: scroll;
   color: #f8f8f8;
   font-size: 15px;
-};
+}
+
+.btn {
+  background-color: #0078fd !important;
+  color: #fff !important;
+  font-weight: 500 !important;
+  border: none;
+}
+
+.input-container {
+  width: 80%;
+  display: inline-block;
+  float: left;
+}
+
+nav {
+  float: right;
+  margin-top: 4px;
+}

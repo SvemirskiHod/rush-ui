@@ -11,33 +11,32 @@ function MainContainer() {
       });
   }, []);
 
-  return (
-    <div className="main-grid">
+  const table =
     <table className="table">
       <thead>
         <tr>
-          <th scope="col">Player</th>
-          <th scope="col">Team</th>
-          <th scope="col">Pos</th>
-          <th scope="col">Att/G</th>
-          <th scope="col">Att</th>
-          <th scope="col">Yrds</th>
-          <th scope="col">Avg</th>
-          <th scope="col">Yds/G</th>
-          <th scope="col">TD</th>
-          <th scope="col">Lng</th>
-          <th scope="col">1st</th>
-          <th scope="col">1st%</th>
-          <th scope="col">20+</th>
-          <th scope="col">40+</th>
-          <th scope="col">FUM</th>
+          <th>Player</th>
+          <th>Team</th>
+          <th>Pos</th>
+          <th>Att/G</th>
+          <th>Att</th>
+          <th>Yrds</th>
+          <th>Avg</th>
+          <th>Yds/G</th>
+          <th>TD</th>
+          <th>Lng</th>
+          <th>1st</th>
+          <th>1st%</th>
+          <th>20+</th>
+          <th>40+</th>
+          <th>FUM</th>
         </tr>
       </thead>
       <tbody>
         {
           players ?
-          players.map((player) =>
-            <tr>
+          players.map((player, index) =>
+            <tr key={player.Player + index}>
               <th>{player['Player']}</th>
               <td>{player['Team']}</td>
               <td>{player['Pos']}</td>
@@ -54,13 +53,47 @@ function MainContainer() {
               <td>{player['40+']}</td>
               <td>{player['FUM']}</td>
             </tr>
-          )
-          : null
+          ) : null
         }
       </tbody>
     </table>
 
 
+  return (
+    <div className="main-grid">
+
+      {/* TODO: Serch Component */}
+      <div className="input-container">
+        <div className="input-group mb-3">
+          <input type="text" className="form-control" placeholder="Search By Player's Name" aria-label="Search By Player's Name" aria-describedby="button-addon2" />
+            <div className="input-group-append">
+              <button className="btn btn-light" type="button" id="button-addon2">Search</button>
+            </div>
+        </div>
+      </div>
+
+      {/* TODO: Pagination Component */}
+      <nav>
+        <ul className="pagination pagination-sm">
+          <li className="page-item">
+            <button className="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </button>
+          </li>
+          <li className="page-item">
+            <button style={{ color: '#a0a5ab' }} disabled className="page-link disabled">2</button>
+          </li>
+          <li className="page-item">
+            <button className="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      {/* TODO: Make table its own component */}
+      { players ? table : <h2>Loading...</h2> }
+      {/* END TABLE */}
 
     </div>
   );
