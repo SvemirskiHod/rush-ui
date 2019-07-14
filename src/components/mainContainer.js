@@ -3,13 +3,38 @@ import axios from 'axios';
 
 function MainContainer() {
   const [players, setPlayers] = useState();
+  const [nameSearch, setNameSearch] = useState('');
 
-  useEffect(() => {
-    axios.get('https://rush-api.herokuapp.com/players?offset=0')
+  const makeRequest = (name_search, offset) => {
+    let url = 'https://rush-api.herokuapp.com/players?';
+    if (name_search) {
+      url += `name_search=${name_search}`
+    }
+    if (offset) {
+      url += `&offset=${offset}`
+    } else {
+      url += `&offset=0`
+    }
+    axios.get(url)
       .then(({ data }) => {
         setPlayers(data);
-      });
+      })
+      .catch(console.error);
+  };
+
+  useEffect(() => {
+    makeRequest();
   }, []);
+
+  const handleNameSearch = () => {
+    makeRequest(nameSearch);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      makeRequest(nameSearch);
+    }
+  }
 
   const table =
     <table className="table">
@@ -77,9 +102,21 @@ function MainContainer() {
       {/* TODO: Serch Component */}
       <div className="input-container">
         <div className="input-group mb-3">
-          <input type="text" className="form-control" placeholder="Search By Player's Name" aria-label="Search By Player's Name" aria-describedby="button-addon2" />
+          <input
+              type="text"
+              className="form-control"
+              placeholder="Search By Player's Name"
+              value={nameSearch}
+              onKeyDown={handleKeyDown}
+              onChange={e => setNameSearch(e.target.value)}
+          />
             <div className="input-group-append">
-              <button className="btn btn-light" type="button" id="button-addon2">Search</button>
+              <button
+                className="btn btn-light"
+                type="button"
+                onClick={handleNameSearch}>
+                Search
+              </button>
             </div>
         </div>
       </div>
