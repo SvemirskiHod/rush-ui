@@ -13,9 +13,12 @@ function MainContainer() {
   // }, []);
 
   useEffect(() => {
-    console.log(offset);
     makeRequest({ offset })
   }, [offset]);
+
+  useEffect(() => {
+    makeRequest({ sortBy, sortOrder })
+  }, [sortBy, sortOrder]);
 
   const makeRequest = (options = {}) => {
     const { nameSearch, offset, sortBy, sortOrder } = options;
@@ -67,6 +70,17 @@ function MainContainer() {
     }
   }
 
+  const handleSortClick = (new_type) => {
+    if (new_type === sortBy) {
+      sortOrder === 'asc'
+        ? setSortOrder('desc')
+        : setSortOrder('asc');
+    } else {
+      setSortOrder('asc');
+    }
+    setSortBy(new_type);
+  }
+
   const table =
     <table className="table">
       <thead>
@@ -76,19 +90,22 @@ function MainContainer() {
           <th>Pos</th>
           <th>Att/G</th>
           <th>Att</th>
-          <th className="clickable-sort">
+          <th onClick={() => { handleSortClick('Yds') } }
+            className="clickable-sort">
             Yrds
             <i className="fa fa-sort-up"></i>
             <i className="fa fa-sort-down"></i>
           </th>
           <th>Avg</th>
           <th>Yds/G</th>
-          <th className="clickable-sort">
+          <th onClick={() => { handleSortClick('TD') } }
+            className="clickable-sort">
             TD
             <i className="fa fa-sort-up"></i>
             <i className="fa fa-sort-down"></i>
           </th>
-          <th className="clickable-sort">
+          <th onClick={() => { handleSortClick('Lng') } }
+            className="clickable-sort">
             Lng
             <i className="fa fa-sort-up"></i>
             <i className="fa fa-sort-down"></i>
