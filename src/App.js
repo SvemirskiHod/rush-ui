@@ -5,9 +5,7 @@ import MainContainer from './components/mainContainer.js';
 function App() {
   return (
     <div className="App">
-      <div className="app-title">
-        <div id="score-image"/>
-      </div>
+      <div id="score-image"/>
       <MainContainer />
     </div>
   );

@@ -21,14 +21,6 @@
   overflow-x: scroll;
 }
 
-.app-title {
-  display: inline-block;
-  margin-top: 60px;
-  font-size: 40px;
-  width: auto;
-  padding-bottom: 10px;
-}
-
 .table {
   position: relative;
   overflow-x: scroll;
@@ -55,6 +47,7 @@ nav {
 }
 
 #score-image {
+  margin-top: 60px;
   width: 190px;
   height: 40px;
   background: url('https://www.thescore.com/static/vectors/thescore-logo.svg') 0 5px no-repeat;
