@@ -13,10 +13,11 @@ function MainContainer() {
   // }, []);
 
   useEffect(() => {
-    makeRequest({ offset })
+    makeRequest({ offset, sortOrder, sortBy })
   }, [offset]);
 
   useEffect(() => {
+    setOffset(0);
     makeRequest({ sortBy, sortOrder })
   }, [sortBy, sortOrder]);
 
@@ -81,6 +82,14 @@ function MainContainer() {
     setSortBy(new_type);
   }
 
+  const determineClasses = (sort_order, sort_type) => {
+    let classes = `fa fa-sort-${sort_order === 'asc' ? 'up' : 'down'}`;
+    if (sortBy === sort_type && sort_order === sortOrder) {
+      classes += ' sort-selected';
+    }
+    return classes;
+  };
+
   const table =
     <table className="table">
       <thead>
@@ -93,22 +102,22 @@ function MainContainer() {
           <th onClick={() => { handleSortClick('Yds') } }
             className="clickable-sort">
             Yrds
-            <i className="fa fa-sort-up"></i>
-            <i className="fa fa-sort-down"></i>
+            <i className={determineClasses('asc', 'Yds')}></i>
+            <i className={determineClasses('desc', 'Yds')}></i>
           </th>
           <th>Avg</th>
           <th>Yds/G</th>
           <th onClick={() => { handleSortClick('TD') } }
             className="clickable-sort">
             TD
-            <i className="fa fa-sort-up"></i>
-            <i className="fa fa-sort-down"></i>
+            <i className={determineClasses('asc', 'TD')}></i>
+            <i className={determineClasses('desc', 'TD')}></i>
           </th>
           <th onClick={() => { handleSortClick('Lng') } }
             className="clickable-sort">
             Lng
-            <i className="fa fa-sort-up"></i>
-            <i className="fa fa-sort-down"></i>
+            <i className={determineClasses('asc', 'Lng')}></i>
+            <i className={determineClasses('desc', 'Lng')}></i>
           </th>
           <th>1st</th>
           <th>1st%</th>
