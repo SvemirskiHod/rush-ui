@@ -23,7 +23,7 @@
 
 .app-title {
   display: inline-block;
-  margin-top: 50px;
+  margin-top: 60px;
   font-size: 40px;
   width: auto;
   padding-bottom: 10px;
@@ -63,4 +63,13 @@
 nav {
   float: right;
   margin-top: 4px;
+}
+
+#score-image {
+  width: 190px;
+  height: 40px;
+  background: url('https://www.thescore.com/static/vectors/thescore-logo.svg') 0 5px no-repeat;
+  /* display: block; */
+  background-size: auto 190%;
+  display: inline-block;
 }

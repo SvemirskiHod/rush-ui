@@ -6,11 +6,12 @@ function App() {
   return (
     <div className="App">
       <div className="app-title">
-        João's
-        <div className="the-score-text">
+        {/* João's */}
+        {/* <div className="the-score-text">
           the<span className="score-s">S</span>core
-        </div>
-        App
+        </div> */}
+        <div id="score-image"/>
+        {/* App */}
       </div>
       <MainContainer />
     </div>
