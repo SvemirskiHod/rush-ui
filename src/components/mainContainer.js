@@ -20,11 +20,23 @@ function MainContainer() {
           <th>Pos</th>
           <th>Att/G</th>
           <th>Att</th>
-          <th>Yrds</th>
+          <th className="clickable-sort">
+            Yrds
+            <i className="fa fa-sort-up"></i>
+            <i className="fa fa-sort-down"></i>
+          </th>
           <th>Avg</th>
           <th>Yds/G</th>
-          <th>TD</th>
-          <th>Lng</th>
+          <th className="clickable-sort">
+            TD
+            <i className="fa fa-sort-up"></i>
+            <i className="fa fa-sort-down"></i>
+          </th>
+          <th className="clickable-sort">
+            Lng
+            <i className="fa fa-sort-up"></i>
+            <i className="fa fa-sort-down"></i>
+          </th>
           <th>1st</th>
           <th>1st%</th>
           <th>20+</th>

@@ -16,7 +16,7 @@
   width: 80%;
   margin-top: 30px;
   margin-bottom: 100px;
-  padding: 12px;
+  padding: 20px;
   position: relative;
   overflow-x: scroll;
 }
@@ -53,4 +53,20 @@ nav {
   background: url('https://www.thescore.com/static/vectors/thescore-logo.svg') 0 5px no-repeat;
   background-size: auto 190%;
   display: inline-block;
+}
+
+.fa {
+  display: inline;
+  font-size: 20px;
+  margin-left: 5px;
+  position: absolute;
+  padding-top: 2px;
+}
+
+.clickable-sort {
+  cursor: pointer;
+}
+
+.sort-selected {
+  color: #0679ff;
 }
