@@ -4,8 +4,8 @@ import axios from 'axios';
 function MainContainer() {
   const [players, setPlayers] = useState();
   const [nameSearch, setNameSearch] = useState('');
-  // const [sortBy, setSortBy] = useState('');
-  // const [sortOrder, setSortOrder] = useState('');
+  const [sortBy, setSortBy] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
   const [offset, setOffset] = useState(0);
 
   // useEffect(() => {
@@ -42,6 +42,14 @@ function MainContainer() {
       makeRequest({ nameSearch });
     }
   }
+
+  const clearSearch = () => {
+    setNameSearch('');
+    setOffset(0);
+    setSortBy('');
+    setSortOrder('');
+    makeRequest();
+  };
 
   const handlePaginationPrevious = () => {
     if ((offset - 25) < 0) {
@@ -135,10 +143,16 @@ function MainContainer() {
           />
             <div className="input-group-append">
               <button
-                className="btn btn-light"
+                className="btn btn-primary"
                 type="button"
                 onClick={handleNameSearch}>
                 Search
+              </button>
+              <button
+                className="btn btn-danger"
+                type="button"
+                onClick={clearSearch}>
+                <i className="fa fa-close"></i>
               </button>
             </div>
         </div>
