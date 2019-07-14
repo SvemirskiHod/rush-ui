@@ -4,35 +4,58 @@ import axios from 'axios';
 function MainContainer() {
   const [players, setPlayers] = useState();
   const [nameSearch, setNameSearch] = useState('');
+  // const [sortBy, setSortBy] = useState('');
+  // const [sortOrder, setSortOrder] = useState('');
+  const [offset, setOffset] = useState(0);
 
-  const makeRequest = (name_search, offset) => {
+  // useEffect(() => {
+    // makeRequest({ offset: 0 });
+  // }, []);
+
+  useEffect(() => {
+    console.log(offset);
+    makeRequest({ offset })
+  }, [offset]);
+
+  const makeRequest = (options = {}) => {
+    const { nameSearch, offset, sortBy, sortOrder } = options;
     let url = 'https://rush-api.herokuapp.com/players?';
-    if (name_search) {
-      url += `name_search=${name_search}`
-    }
-    if (offset) {
-      url += `&offset=${offset}`
+    if (nameSearch) {
+      url += `&name_search=${nameSearch}`;
     } else {
-      url += `&offset=0`
+      url += `&offset=${offset || 0}`;
+    }
+    if (sortBy) {
+      url += `&sort_by=${sortBy}&sort_order=${sortOrder || 'asc'}`;
     }
     axios.get(url)
-      .then(({ data }) => {
-        setPlayers(data);
-      })
+      .then(({ data }) => { setPlayers(data) })
       .catch(console.error);
   };
 
-  useEffect(() => {
-    makeRequest();
-  }, []);
-
   const handleNameSearch = () => {
-    makeRequest(nameSearch);
+    makeRequest({ nameSearch });
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      makeRequest(nameSearch);
+      makeRequest({ nameSearch });
+    }
+  }
+
+  const handlePaginationPrevious = () => {
+    if ((offset - 25) < 0) {
+      setOffset(325);
+    } else {
+      setOffset(offset - 25);
+    }
+  }
+
+  const handlePaginationNext = () => {
+    if (offset === 325) {
+      setOffset(0);
+    } else {
+      setOffset(offset + 25);
     }
   }
 
@@ -125,15 +148,17 @@ function MainContainer() {
       <nav>
         <ul className="pagination pagination-sm">
           <li className="page-item">
-            <button className="page-link" href="#" aria-label="Previous">
+            <button className="page-link" onClick={handlePaginationPrevious}>
               <span aria-hidden="true">&laquo;</span>
             </button>
           </li>
           <li className="page-item">
-            <button style={{ color: '#a0a5ab' }} disabled className="page-link disabled">2</button>
+            <button style={{ color: '#a0a5ab' }} disabled className="page-link disabled">
+              {offset / 25 + 1}
+            </button>
           </li>
           <li className="page-item">
-            <button className="page-link" href="#" aria-label="Next">
+            <button className="page-link" onClick={handlePaginationNext}>
               <span aria-hidden="true">&raquo;</span>
             </button>
           </li>

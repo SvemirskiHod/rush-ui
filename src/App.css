@@ -57,10 +57,10 @@ nav {
 
 .fa {
   display: inline;
-  font-size: 20px;
+  font-size: 16px;
   margin-left: 5px;
   position: absolute;
-  padding-top: 2px;
+  padding-top: 3px;
 }
 
 .clickable-sort {
