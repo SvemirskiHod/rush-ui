@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import MainContainer from './components/mainContainer.js';
+import MainContainer from './components/mainContainer.jsx';
 
 function App() {
   return (
