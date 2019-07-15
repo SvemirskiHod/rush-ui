@@ -31,12 +31,18 @@
 .input-container {
   width: 80%;
   display: inline-block;
-  float: left;
+  text-align: right;
+  margin-right: auto;
 }
 
 nav {
   float: right;
   margin-top: 4px;
+}
+
+.main-grid-actions {
+  text-align: left;
+  margin-bottom: 20px
 }
 
 #score-image {

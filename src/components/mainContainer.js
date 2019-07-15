@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { parse as csv } from 'json2csv';
 
 // Import Components
 import NameSearchInput from './NameSearchInput';
@@ -93,23 +94,44 @@ function MainContainer() {
     return classes;
   };
 
+  const handleSaveAsCsv = () => {
+    const csvData = csv(players);
+    const filename = 'players.csv';
+    const blob = new Blob([csvData], { type: 'text/csv' });
+
+    // Create New anchor tag and attach the downloadable to it
+    const elem = window.document.createElement('a');
+    elem.href = window.URL.createObjectURL(blob);
+    elem.download = filename;
+    document.body.appendChild(elem);
+    // Simulate Click for download
+    elem.click();
+    document.body.removeChild(elem);
+  };
+
   return (
     <div className="main-grid">
 
-      <NameSearchInput
-        nameSearch={nameSearch}
-        handleKeyDown={handleKeyDown}
-        setNameSearch={setNameSearch}
-        handleNameSearch={handleNameSearch}
-        clearSearch={clearSearch}
-      />
+      <div className="main-grid-actions">
+        <NameSearchInput
+          nameSearch={nameSearch}
+          handleKeyDown={handleKeyDown}
+          setNameSearch={setNameSearch}
+          handleNameSearch={handleNameSearch}
+          clearSearch={clearSearch}
+        />
 
+        <PaginationBlock
+          offset={offset}
+          handlePaginationPrevious={handlePaginationPrevious}
+          handlePaginationNext={handlePaginationNext}
+        />
 
-      <PaginationBlock
-        offset={offset}
-        handlePaginationPrevious={handlePaginationPrevious}
-        handlePaginationNext={handlePaginationNext}
-      />
+          <button onClick={handleSaveAsCsv}
+            className="btn btn-light">
+            Download Results as CSV
+          </button>
+      </div>
 
       {/* Players Table - Render Conditionally */}
       { players
