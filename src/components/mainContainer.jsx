@@ -21,9 +21,8 @@ function MainContainer() {
     let url = 'https://rush-api.herokuapp.com/players?';
     if (nameSearch) {
       url += `&name_search=${nameSearch}`;
-    } else {
-      url += `&offset=${offset || 0}`;
     }
+    url += `&offset=${offset || 0}`;
     if (sortBy) {
       url += `&sort_by=${sortBy}&sort_order=${sortOrder || 'asc'}`;
     }
@@ -33,13 +32,13 @@ function MainContainer() {
   };
 
   useEffect(() => {
-    makeRequest({ offset, sortOrder, sortBy })
-  }, [offset]);
+    makeRequest({ offset, sortOrder, sortBy, nameSearch })
+  }, [offset, sortBy, sortOrder]);
 
-  useEffect(() => {
-    setOffset(0);
-    makeRequest({ sortBy, sortOrder })
-  }, [sortBy, sortOrder]);
+  // useEffect(() => {
+  //   setOffset(0);
+  //   makeRequest({ sortBy, sortOrder })
+  // }, [sortBy, sortOrder]);
 
   const handleNameSearch = () => {
     makeRequest({ nameSearch });
