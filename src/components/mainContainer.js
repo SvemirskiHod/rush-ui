@@ -3,9 +3,9 @@ import axios from 'axios';
 import { parse as csv } from 'json2csv';
 
 // Import Components
-import NameSearchInput from './NameSearchInput';
-import PlayersTable from './PlayersTable';
-import PaginationBlock from './PaginationBlock';
+import NameSearchInput from './nameSearchInput';
+import PlayersTable from './playersTable';
+import PaginationBlock from './paginationBlock';
 
 function MainContainer() {
   // Declare Hooks
